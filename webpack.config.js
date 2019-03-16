@@ -1,20 +1,26 @@
+/* eslint-disable no-undef */
+
 const path = require('path')
+const HtmlWebpackPlugin =  require('html-webpack-plugin')
 
 module.exports = {
-    entry: './client/index.js',
+    entry: './src/index.js',
     output: {
-        path: path.join(__dirname, 'server/public'),
-        filename: 'bundle.js'
+        path: path.join(__dirname, '/dist'),
+        filename: 'index_bundle.js'
     }, 
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader'
+            },   
         }]
     }, 
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
-    devtool: 'source-map'
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ]
 }

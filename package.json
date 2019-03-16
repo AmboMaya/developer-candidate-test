@@ -4,7 +4,8 @@
   "description": "Refactoring exercise for Node",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -13,19 +14,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-loader": "^7.1.5",
+    "bootstrap": "^4.3.1",
     "express": "^4.15.3",
-    "handlebars": "^4.0.10",
     "nedb": "^1.8.0",
     "react": "^16.8.4",
+    "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
-    "babel-loader": "^8.0.5",
+    "babel-core": "^6.26.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "eslint": "^5.15.1",
+    "eslint-plugin-react": "^7.12.4",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   }
 }
