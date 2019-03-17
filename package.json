@@ -15,11 +15,13 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
+    "knex": "^0.16.3",
     "nedb": "^1.8.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.86.0"
+    "semantic-ui-react": "^0.86.0",
+    "sqlite3": "^4.0.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
