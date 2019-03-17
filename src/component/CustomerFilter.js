@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Header, Form, Grid, Input, Button } from 'semantic-ui-react'
+import { Header, Form, Grid, Input } from 'semantic-ui-react'
 
 const options = [
     { key: 'a', text: 'All', value: 'all' },
@@ -18,31 +18,36 @@ class CustomerFilter extends Component {
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
   
     handleSubmit = () => { 
-      this.setState({ 
-        name: '',
-        gender: '',
-        minAge: '',
-        maxAge: ''
-    })
+      this.props.doSearch(this.state)
+    }
+
+    resetHandler = () => {
+        this.setState({
+            name: '', 
+            gender: '', 
+            minAge: '', 
+            maxAge: ''}, 
+                this.handleSubmit)
+        
     }
 
     render(){
         return (
-            <Grid textAlign='center' style={{ height: '100%', marginTop: 20 }} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450 }}>
-                    <Form>
-                        <Header as='h2'>Filter Customer</Header>
-                        <Form.Input placeholder='Name' name='name' onChange={this.handleChange} />
-                        <Form.Select fluid gender='gender' options={options} placeholder='Gender' onChange={this.handleChange}/>
-                        <Header as='h5' textAlign='left'>Age Range</Header>
-                        <Grid columns={1} style={{margin: 'auto'}}>
-                            <Input type='number' min={0} placeholder='min' onChange={this.handleChange} />
-                            <Input type='number' max={100} placeholder='max' onChange={this.handleChange} />
-                        </Grid>
-                        <Button content='Submit' />
-                    </Form>
-                </Grid.Column>
-            </Grid>
+            <Form>
+                <Header as='h2'>Filter People</Header>
+                <Form.Input placeholder='Name' name='name' size='mini' value={this.state.name} onChange={this.handleChange} />
+                <Form.Select name='gender' size='mini' value={this.state.gender} options={options} placeholder='Gender' onChange={this.handleChange}/>
+                <Header as='h5' textAlign='left'>Age Range</Header>
+                <Grid columns={1} style={{margin: 'auto'}}>
+                    <Input type='number' name='minAge' value={this.state.minAge} placeholder='min' onChange={this.handleChange} />
+                    <Input type='number' name='maxAge' value={this.state.maxAge} placeholder='max' onChange={this.handleChange} />
+                </Grid>
+                <div style={{marginTop: 20}}>
+                    <input onClick={this.handleSubmit} type="submit" value="Submit"></input>
+                    <input onClick={this.resetHandler} type="submit" value="Reset"></input>
+                </div>
+            </Form>
+        
         )
     }
     
